@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-zinc-200 dark:border-[#1e201e] dark:bg-[#101110]">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
+      <div className="flex items-center justify-between px-6 py-4">
         <p className="text-sm text-zinc-500 dark:text-zinc-400">
           © {new Date().getFullYear()} Vlad Ionita
         </p>
