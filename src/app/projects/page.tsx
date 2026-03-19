@@ -53,7 +53,7 @@ export default function ProjectsPage() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className="flex flex-col rounded-2xl border border-zinc-200 bg-white p-6 transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
+            className="flex flex-col rounded-2xl border border-zinc-200 bg-white p-6 transition-all hover:shadow-md dark:border-[#2a2c2a] dark:bg-[#1a1c1a] dark:hover:border-[#3a3c3a]"
           >
             <h2 className="mb-2 text-xl font-semibold text-zinc-900 dark:text-zinc-50">
               {project.title}
@@ -66,7 +66,7 @@ export default function ProjectsPage() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                    className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-[#2a2c2a] dark:text-zinc-300"
                   >
                     {tag}
                   </span>

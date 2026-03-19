@@ -88,7 +88,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/80">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-sm dark:border-[#1e201e] dark:bg-[#101110]/80">
       <nav className="flex items-center justify-between px-6 py-4 sm:grid sm:grid-cols-3">
         {/* Name */}
         <Link
@@ -178,7 +178,7 @@ export default function Navbar() {
 
       {/* Mobile menu dropdown */}
       {menuOpen && (
-        <div className="border-t border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/95 sm:hidden">
+        <div className="border-t border-zinc-200 bg-white/95 backdrop-blur-sm dark:border-[#1e201e] dark:bg-[#101110]/95 sm:hidden">
           <ul className="flex flex-col px-6 py-4">
             {links.map(({ href, label }) => (
               <li key={href}>
@@ -204,7 +204,7 @@ export default function Navbar() {
                 Contact
               </a>
             </li>
-            <li className="pt-3 border-t border-zinc-100 dark:border-zinc-800 mt-1">
+            <li className="pt-3 border-t border-zinc-100 dark:border-[#1e201e] mt-1">
               <button
                 onClick={() => {
                   cycleTheme();
