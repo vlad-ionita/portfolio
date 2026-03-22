@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore, useState } from "react";
+import RollingText from "./RollingText";
 
 const MAILTO = "mailto:ionitavlad83@gmail.com";
 
@@ -89,38 +90,38 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur-sm dark:border-[#1e201e] dark:bg-[#101110]/80">
-      <nav className="flex items-center justify-between px-6 py-4 sm:grid sm:grid-cols-3">
+      <nav className="flex items-center justify-between px-6 py-4 sm:grid sm:grid-cols-3 sm:items-center">
         {/* Name */}
         <Link
           href="/"
           onClick={closeMenu}
-          className="w-fit text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
+          className="flex w-fit text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
         >
-          Vlad Ionita
+          <RollingText text={"VLAD IONITA"} />
         </Link>
 
         {/* Desktop links */}
         <ul className="hidden items-center justify-center gap-6 sm:flex">
           {links.map(({ href, label }) => (
-            <li key={href}>
+            <li key={href} className="flex">
               <Link
                 href={href}
-                className={`text-sm transition-colors hover:text-zinc-900 dark:hover:text-zinc-50 ${
+                className={`inline-flex items-center text-sm transition-colors hover:text-zinc-900 dark:hover:text-zinc-50 ${
                   pathname === href
                     ? "font-medium text-zinc-900 dark:text-zinc-50"
                     : "text-zinc-500 dark:text-zinc-400"
                 }`}
               >
-                {label}
+                <RollingText text={label} />
               </Link>
             </li>
           ))}
-          <li>
+          <li className="flex">
             <a
               href={MAILTO}
-              className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              className="inline-flex items-center text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
             >
-              Contact
+              <RollingText text="Contact" />
             </a>
           </li>
         </ul>
