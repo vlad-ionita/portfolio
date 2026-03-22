@@ -10,6 +10,8 @@ interface RollingTextProps {
 export default function RollingText({ text }: RollingTextProps) {
   const realRef = useRef<HTMLSpanElement>(null);
   const fakeRef = useRef<HTMLSpanElement>(null);
+  const pendingEnter = useRef<gsap.core.Tween | null>(null);
+  const pendingLeave = useRef<gsap.core.Tween | null>(null);
 
   useEffect(() => {
     const fake = fakeRef.current?.querySelectorAll(".roll-char");
@@ -22,6 +24,7 @@ export default function RollingText({ text }: RollingTextProps) {
     if (!real || !fake) return;
 
     // Up
+    pendingLeave.current?.kill();
     gsap.to(real, {
       rotateX: -90,
       stagger: 0.025,
@@ -29,13 +32,14 @@ export default function RollingText({ text }: RollingTextProps) {
       ease: "sine.inOut",
       overwrite: "auto",
     });
-    gsap.to(fake, {
-      rotateX: 0,
-      stagger: 0.025,
-      delay: 0.075,
-      duration: 0.2,
-      ease: "sine.inOut",
-      overwrite: "auto",
+    pendingEnter.current = gsap.delayedCall(0.075, () => {
+      gsap.to(fake, {
+        rotateX: 0,
+        stagger: 0.025,
+        duration: 0.2,
+        ease: "sine.inOut",
+        overwrite: "auto",
+      });
     });
   };
 
@@ -45,20 +49,22 @@ export default function RollingText({ text }: RollingTextProps) {
     if (!real || !fake) return;
 
     // Down
-    gsap.to(real, {
-      rotateX: 0,
-      stagger: 0.025,
-      delay: 0.075,
-      duration: 0.2,
-      ease: "sine.inOut",
-      overwrite: "auto",
-    });
+    pendingEnter.current?.kill();
     gsap.to(fake, {
       rotateX: 90,
       stagger: 0.025,
       duration: 0.2,
       ease: "sine.inOut",
       overwrite: "auto",
+    });
+    pendingLeave.current = gsap.delayedCall(0.075, () => {
+      gsap.to(real, {
+        rotateX: 0,
+        stagger: 0.025,
+        duration: 0.2,
+        ease: "sine.inOut",
+        overwrite: "auto",
+      });
     });
   };
 
