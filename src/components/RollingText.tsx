@@ -90,7 +90,7 @@ export default function RollingText({ text }: RollingTextProps) {
 
   return (
     <span
-      className="relative inline-block overflow-hidden leading-none perspective-[400px] transform-3d"
+      className="relative inline-block leading-none perspective-[400px] transform-3d"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       aria-label={text}
