@@ -108,8 +108,8 @@ export default function Navbar() {
                 href={href}
                 className={`inline-flex items-center text-sm transition-colors hover:text-zinc-900 dark:hover:text-zinc-50 ${
                   pathname === href
-                    ? "font-medium text-zinc-900 dark:text-zinc-50"
-                    : "text-zinc-500 dark:text-zinc-400"
+                    ? "font-semibold italic text-zinc-900 dark:text-zinc-50"
+                    : "font-semibold text-zinc-500 dark:text-zinc-400"
                 }`}
               >
                 <RollingText text={label} />
@@ -119,7 +119,7 @@ export default function Navbar() {
           <li className="flex">
             <a
               href={MAILTO}
-              className="inline-flex items-center text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              className="inline-flex items-center text-sm font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
             >
               <RollingText text="Contact" />
             </a>
