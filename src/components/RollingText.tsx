@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 
 interface RollingTextProps {
@@ -12,10 +12,12 @@ export default function RollingText({ text }: RollingTextProps) {
   const fakeRef = useRef<HTMLSpanElement>(null);
   const pendingEnter = useRef<gsap.core.Tween | null>(null);
   const pendingLeave = useRef<gsap.core.Tween | null>(null);
+  const [fakeVisible] = useState(false);
 
   useEffect(() => {
     const fake = fakeRef.current?.querySelectorAll(".roll-char");
     if (fake) gsap.set(fake, { rotateX: 90 });
+    if (fakeRef.current) fakeRef.current.style.opacity = "1";
   }, []);
 
   const handleMouseEnter = () => {
@@ -101,6 +103,7 @@ export default function RollingText({ text }: RollingTextProps) {
       <span
         ref={fakeRef}
         className="absolute top-0 left-0 block h-full transform-3d"
+        style={{ opacity: fakeVisible ? 1 : 0 }}
         aria-hidden="true"
       >
         {fakeChars}
