@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore, useState } from "react";
 import RollingText from "./RollingText";
+import CornerBox from "./CornerBox";
 
 const MAILTO = "mailto:ionitavlad83@gmail.com";
 
@@ -112,7 +113,9 @@ export default function Navbar() {
                     : "font-semibold text-zinc-500 dark:text-zinc-400"
                 }`}
               >
-                <RollingText text={label} />
+                <CornerBox active={pathname === href}>
+                  <RollingText text={label} />
+                </CornerBox>
               </Link>
             </li>
           ))}
@@ -121,7 +124,9 @@ export default function Navbar() {
               href={MAILTO}
               className="inline-flex items-center text-sm font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
             >
-              <RollingText text="Contact" />
+              <CornerBox>
+                <RollingText text="Contact" />
+              </CornerBox>
             </a>
           </li>
         </ul>
