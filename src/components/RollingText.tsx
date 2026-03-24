@@ -16,7 +16,7 @@ export default function RollingText({ text }: RollingTextProps) {
 
   useEffect(() => {
     const fake = fakeRef.current?.querySelectorAll(".roll-char");
-    if (fake) gsap.set(fake, { rotateX: 90 });
+    if (fake) gsap.set(fake, { rotateX: 95 });
     if (fakeRef.current) fakeRef.current.style.opacity = "1";
   }, []);
 
@@ -28,7 +28,7 @@ export default function RollingText({ text }: RollingTextProps) {
     // Up
     pendingLeave.current?.kill();
     gsap.to(real, {
-      rotateX: -90,
+      rotateX: -95,
       stagger: 0.025,
       duration: 0.2,
       ease: "sine.inOut",
@@ -53,7 +53,7 @@ export default function RollingText({ text }: RollingTextProps) {
     // Down
     pendingEnter.current?.kill();
     gsap.to(fake, {
-      rotateX: 90,
+      rotateX: 95,
       stagger: 0.025,
       duration: 0.2,
       ease: "sine.inOut",
