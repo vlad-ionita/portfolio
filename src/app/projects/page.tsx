@@ -44,9 +44,9 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <main className="mx-auto max-w-5xl px-6 pb-24 pt-32">
-      <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Projects
+    <main className="mx-auto max-w-5xl px-6 pb-24 pt-24">
+      <h1 className="mb-8 text-5xl text-center font-black tracking-tight text-zinc-900 dark:text-zinc-50">
+        PROJECTS
       </h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
