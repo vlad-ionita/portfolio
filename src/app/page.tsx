@@ -1,29 +1,68 @@
+"use client";
+
 import Link from "next/link";
+import { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const lines = containerRef.current?.querySelectorAll(".reveal-line");
+    if (!lines) return;
+
+    const hidden = "linear-gradient(to right, black -30%, transparent 0%)";
+    lines.forEach((line) => {
+      const el = line as HTMLElement;
+      el.style.maskImage = hidden;
+      el.style.webkitMaskImage = hidden;
+    });
+
+    lines.forEach((line, i) => {
+      const el = line as HTMLElement;
+      const proxy = { p: -30 };
+
+      gsap.to(proxy, {
+        p: 100,
+        duration: 2,
+        delay: i * 0.2,
+        ease: "sine.out",
+        onUpdate() {
+          const mask = `linear-gradient(to right, black ${proxy.p}%, transparent ${proxy.p + 30}%)`;
+          el.style.maskImage = mask;
+          el.style.webkitMaskImage = mask;
+        },
+        onComplete() {
+          el.style.maskImage = "";
+          el.style.webkitMaskImage = "";
+        },
+      });
+    });
+  }, []);
+
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-6 pb-24">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-150 w-150 rounded-full bg-blue-100/60 blur-3xl dark:bg-blue-950/30" />
       </div>
 
-      <div className="relative max-w-2xl text-center">
-        <p className="mb-4 text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+      <div ref={containerRef} className="relative max-w-2xl text-center">
+        <p className="reveal-line mb-4 text-sm font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
           Full-Stack Developer
         </p>
-        <h1 className="mb-6 text-5xl font-bold tracking-tight sm:text-6xl">
+        <h1 className="reveal-line mb-6 text-5xl font-bold tracking-tight sm:text-6xl">
           <span className="bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-violet-400">
             Vlad Ionita
           </span>
         </h1>
-        <p className="mb-10 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+        <p className="reveal-line mb-10 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
           CSE graduate from TU Delft with hands-on experience building
           full-stack web applications. Focused on clean architecture and
           maintainable code, with a growing interest in DevOps and cloud
           infrastructure.
         </p>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div className="reveal-line flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/projects"
             className="flex items-center gap-2 rounded-full bg-zinc-900 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
@@ -51,7 +90,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-5">
+        <div className="reveal-line mt-10 flex items-center justify-center gap-5">
           <a
             href="https://github.com/vlad-ionita"
             target="_blank"
