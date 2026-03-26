@@ -43,7 +43,7 @@ export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center px-6 pb-24">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="h-150 w-150 rounded-full bg-blue-100/60 blur-3xl dark:bg-blue-950/30" />
+        <div className="h-150 w-150 rounded-full bg-[#171717]/5 blur-3xl dark:bg-[#ededed]/2.5" />
       </div>
 
       <div ref={containerRef} className="relative max-w-2xl text-center">
@@ -51,9 +51,7 @@ export default function Home() {
           Full-Stack Developer
         </p>
         <h1 className="reveal-line mb-6 text-5xl font-bold tracking-tight sm:text-6xl">
-          <span className="bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-violet-400">
-            Vlad Ionita
-          </span>
+          <span className="text-zinc-900 dark:text-zinc-50">Vlad Ionita</span>
         </h1>
         <p className="reveal-line mb-10 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
           CSE graduate from TU Delft with hands-on experience building
