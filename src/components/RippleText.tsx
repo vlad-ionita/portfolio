@@ -3,11 +3,11 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 
-interface RollingTextProps {
+interface RippleTextProps {
   text: string;
 }
 
-export default function RollingText({ text }: RollingTextProps) {
+export default function RippleText({ text }: RippleTextProps) {
   const realRef = useRef<HTMLSpanElement>(null);
   const fakeRef = useRef<HTMLSpanElement>(null);
   const pendingEnter = useRef<gsap.core.Tween | null>(null);
@@ -15,14 +15,14 @@ export default function RollingText({ text }: RollingTextProps) {
   const [fakeVisible] = useState(false);
 
   useEffect(() => {
-    const fake = fakeRef.current?.querySelectorAll(".roll-char");
+    const fake = fakeRef.current?.querySelectorAll(".ripple-char");
     if (fake) gsap.set(fake, { rotateX: 95 });
     if (fakeRef.current) fakeRef.current.style.opacity = "1";
   }, []);
 
   const handleMouseEnter = () => {
-    const real = realRef.current?.querySelectorAll(".roll-char");
-    const fake = fakeRef.current?.querySelectorAll(".roll-char");
+    const real = realRef.current?.querySelectorAll(".ripple-char");
+    const fake = fakeRef.current?.querySelectorAll(".ripple-char");
     if (!real || !fake) return;
 
     // Up
@@ -46,8 +46,8 @@ export default function RollingText({ text }: RollingTextProps) {
   };
 
   const handleMouseLeave = () => {
-    const real = realRef.current?.querySelectorAll(".roll-char");
-    const fake = fakeRef.current?.querySelectorAll(".roll-char");
+    const real = realRef.current?.querySelectorAll(".ripple-char");
+    const fake = fakeRef.current?.querySelectorAll(".ripple-char");
     if (!real || !fake) return;
 
     // Down
@@ -73,7 +73,7 @@ export default function RollingText({ text }: RollingTextProps) {
   const realChars = text.split("").map((char, i) => (
     <span
       key={i}
-      className="roll-char relative inline-block origin-top backface-hidden transform-3d"
+      className="ripple-char relative inline-block origin-top backface-hidden transform-3d"
       aria-hidden="true"
     >
       {char === " " ? "\u00A0" : char} {/* For spaces */}
@@ -83,7 +83,7 @@ export default function RollingText({ text }: RollingTextProps) {
   const fakeChars = text.split("").map((char, i) => (
     <span
       key={i}
-      className="roll-char relative inline-block origin-bottom backface-hidden transform-3d"
+      className="ripple-char relative inline-block origin-bottom backface-hidden transform-3d"
       aria-hidden="true"
     >
       {char === " " ? "\u00A0" : char} {/* For spaces */}
