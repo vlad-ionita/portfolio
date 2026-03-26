@@ -5,9 +5,13 @@ import gsap from "gsap";
 
 interface RollingTextProps {
   text: string;
+  duration?: number;
 }
 
-export default function RollingText({ text }: RollingTextProps) {
+export default function RollingText({
+  text,
+  duration = 0.4,
+}: RollingTextProps) {
   const realRef = useRef<HTMLSpanElement>(null);
   const fakeRef = useRef<HTMLSpanElement>(null);
 
@@ -26,19 +30,19 @@ export default function RollingText({ text }: RollingTextProps) {
 
       gsap.to(char, {
         scaleY: 0,
-        duration: 0.5,
+        duration,
         delay,
         ease: "power3.inOut",
       });
 
       gsap.to(fake[i], {
         scaleY: 1,
-        duration: 0.5,
-        delay: delay - 0.01,
+        duration,
+        delay: delay,
         ease: "power3.inOut",
       });
     });
-  }, []);
+  }, [duration]);
 
   const realChars = text.split("").map((char, i) => (
     <span
