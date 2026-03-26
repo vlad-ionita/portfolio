@@ -1,3 +1,4 @@
+import RollingText from "@/components/RollingText";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function ProjectsPage() {
   return (
     <main className="mx-auto max-w-5xl px-6 pb-24 pt-24">
       <h1 className="mb-8 text-5xl text-center font-black tracking-tight text-zinc-900 dark:text-zinc-50">
-        PROJECTS
+        <RollingText text="PROJECTS" />
       </h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
