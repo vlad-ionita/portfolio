@@ -1,74 +1,48 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
 interface RollingTextProps {
   text: string;
+  duration?: number;
 }
 
-export default function RollingText({ text }: RollingTextProps) {
+export default function RollingText({
+  text,
+  duration = 0.4,
+}: RollingTextProps) {
   const realRef = useRef<HTMLSpanElement>(null);
   const fakeRef = useRef<HTMLSpanElement>(null);
-  const pendingEnter = useRef<gsap.core.Tween | null>(null);
-  const pendingLeave = useRef<gsap.core.Tween | null>(null);
-  const [fakeVisible] = useState(false);
 
   useEffect(() => {
+    const real = realRef.current?.querySelectorAll(".roll-char");
     const fake = fakeRef.current?.querySelectorAll(".roll-char");
-    if (fake) gsap.set(fake, { rotateX: 95 });
+    if (!real || !fake) return;
+
     if (fakeRef.current) fakeRef.current.style.opacity = "1";
-  }, []);
+    gsap.set(fake, { scaleY: 0 });
 
-  const handleMouseEnter = () => {
-    const real = realRef.current?.querySelectorAll(".roll-char");
-    const fake = fakeRef.current?.querySelectorAll(".roll-char");
-    if (!real || !fake) return;
+    const stepDelay = 0.05;
 
-    // Up
-    pendingLeave.current?.kill();
-    gsap.to(real, {
-      rotateX: -95,
-      stagger: 0.025,
-      duration: 0.2,
-      ease: "sine.inOut",
-      overwrite: "auto",
-    });
-    pendingEnter.current = gsap.delayedCall(0.075, () => {
-      gsap.to(fake, {
-        rotateX: 0,
-        stagger: 0.025,
-        duration: 0.2,
-        ease: "sine.inOut",
-        overwrite: "auto",
+    Array.from(real).forEach((char, i) => {
+      const delay = i * stepDelay;
+
+      gsap.to(char, {
+        scaleY: 0,
+        duration,
+        delay,
+        ease: "power3.inOut",
+      });
+
+      gsap.to(fake[i], {
+        scaleY: 1,
+        duration,
+        delay: delay,
+        ease: "power3.inOut",
       });
     });
-  };
-
-  const handleMouseLeave = () => {
-    const real = realRef.current?.querySelectorAll(".roll-char");
-    const fake = fakeRef.current?.querySelectorAll(".roll-char");
-    if (!real || !fake) return;
-
-    // Down
-    pendingEnter.current?.kill();
-    gsap.to(fake, {
-      rotateX: 95,
-      stagger: 0.025,
-      duration: 0.2,
-      ease: "sine.inOut",
-      overwrite: "auto",
-    });
-    pendingLeave.current = gsap.delayedCall(0.075, () => {
-      gsap.to(real, {
-        rotateX: 0,
-        stagger: 0.025,
-        duration: 0.2,
-        ease: "sine.inOut",
-        overwrite: "auto",
-      });
-    });
-  };
+  }, [duration]);
 
   const realChars = text.split("").map((char, i) => (
     <span
@@ -93,8 +67,6 @@ export default function RollingText({ text }: RollingTextProps) {
   return (
     <span
       className="relative inline-block leading-none perspective-[400px] transform-3d"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       aria-label={text}
     >
       <span ref={realRef} className="block transform-3d" aria-hidden="true">
@@ -103,7 +75,7 @@ export default function RollingText({ text }: RollingTextProps) {
       <span
         ref={fakeRef}
         className="absolute top-0 left-0 block h-full transform-3d"
-        style={{ opacity: fakeVisible ? 1 : 0 }}
+        style={{ opacity: 0 }}
         aria-hidden="true"
       >
         {fakeChars}

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore, useState } from "react";
-import RollingText from "./RollingText";
+import RippleText from "./RippleText";
 import CornerBox from "./CornerBox";
 import MobileMenu from "./MobileMenu";
 
@@ -96,7 +96,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
             className="flex w-fit text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
           >
-            <RollingText text={"VLAD IONITA"} />
+            <RippleText text={"VLAD IONITA"} />
           </Link>
 
           {/* Desktop links (center) */}
@@ -112,7 +112,7 @@ export default function Navbar() {
                   }`}
                 >
                   <CornerBox active={pathname === href}>
-                    <RollingText text={label} />
+                    <RippleText text={label} />
                   </CornerBox>
                 </Link>
               </li>
@@ -123,7 +123,7 @@ export default function Navbar() {
                 className="inline-flex items-center text-sm font-semibold text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
               >
                 <CornerBox>
-                  <RollingText text="Contact" />
+                  <RippleText text="Contact" />
                 </CornerBox>
               </a>
             </li>
