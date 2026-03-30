@@ -12,9 +12,11 @@ export default function AboutPage() {
       <h1 className="mb-2 text-4xl font-black tracking-tight text-zinc-900 dark:text-zinc-50">
         <RollingText text="ABOUT ME" />
       </h1>
-      <p className="mb-10 text-lg text-zinc-500 dark:text-zinc-400">
-        Full-Stack Developer · CSE Graduate, TU Delft
-      </p>
+      <FadeInText>
+        <p className="mb-10 text-lg text-zinc-500 dark:text-zinc-400">
+          Full-Stack Developer · CSE Graduate, TU Delft
+        </p>
+      </FadeInText>
 
       {/* Intro */}
       <div className="mb-12 space-y-5 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -42,9 +44,11 @@ export default function AboutPage() {
 
       {/* Skills */}
       <div className="mb-12">
-        <h2 className="mb-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
-          Core Skills
-        </h2>
+        <FadeInText>
+          <h2 className="mb-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+            Core Skills
+          </h2>
+        </FadeInText>
         <div className="mb-6 space-y-3 text-zinc-600 dark:text-zinc-400">
           <FadeInText>
             <p>
@@ -97,9 +101,11 @@ export default function AboutPage() {
 
       {/* Background */}
       <div className="mb-12">
-        <h2 className="mb-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
-          Background
-        </h2>
+        <FadeInText>
+          <h2 className="mb-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
+            Background
+          </h2>
+        </FadeInText>
         <div className="space-y-5 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
           <FadeInText>
             <p>
