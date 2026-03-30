@@ -12,6 +12,7 @@ export default function RollingText({
   text,
   duration = 0.4,
 }: RollingTextProps) {
+  const wrapperRef = useRef<HTMLSpanElement>(null);
   const realRef = useRef<HTMLSpanElement>(null);
   const fakeRef = useRef<HTMLSpanElement>(null);
 
@@ -22,6 +23,12 @@ export default function RollingText({
 
     if (fakeRef.current) fakeRef.current.style.opacity = "1";
     gsap.set(fake, { scaleY: 0 });
+
+    gsap.to(wrapperRef.current, {
+      opacity: 1,
+      duration,
+      ease: "power2.inOut",
+    });
 
     const stepDelay = 0.05;
 
@@ -66,7 +73,9 @@ export default function RollingText({
 
   return (
     <span
+      ref={wrapperRef}
       className="relative inline-block leading-none perspective-[400px] transform-3d"
+      style={{ opacity: 0 }}
       aria-label={text}
     >
       <span ref={realRef} className="block transform-3d" aria-hidden="true">
