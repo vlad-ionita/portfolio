@@ -128,6 +128,12 @@ export default function KotlinWebsiteMigrationContent() {
   } | null>(null);
 
   useEffect(() => {
+    const ro = new ResizeObserver(() => ScrollTrigger.refresh());
+    ro.observe(document.body);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (!lightbox) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightbox(null);
@@ -137,6 +143,7 @@ export default function KotlinWebsiteMigrationContent() {
   }, [lightbox]);
 
   useLayoutEffect(() => {
+    window.scrollTo(0, 0);
     const ctx = gsap.context(() => {
       // Before/after images
       const screenshots = imagesRef.current?.querySelectorAll(".screenshot");
