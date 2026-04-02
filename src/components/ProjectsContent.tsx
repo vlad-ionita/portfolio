@@ -3,6 +3,7 @@
 import RollingText from "@/components/RollingText";
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 const projects = [
   {
@@ -11,6 +12,7 @@ const projects = [
       "Migration of the Kotlin website homepage from a legacy Flask and React 17 stack to React Router 7 with server-side rendering.",
     tags: ["React Router 7", "TypeScript", "SSR"],
     repo: "https://github.com/vlad-ionita/React-Router-Migration-JetBrains.com",
+    detailHref: "/projects/kotlin-website-migration",
   },
   {
     title: "Job Application Tracker",
@@ -18,6 +20,7 @@ const projects = [
       "A full-stack job application tracker with a kanban-style interface, JWT authentication with refresh token rotation, and a responsive React frontend.",
     tags: ["React", "Node.js", "PostgreSQL", "Prisma"],
     repo: "https://github.com/vlad-ionita/Job-Application-Tracker",
+    detailHref: null,
   },
   {
     title: "AR Frigate Application",
@@ -25,6 +28,7 @@ const projects = [
       "A Unity-based AR application built for a pair of AR glasses, designed to help navy personnel manage battle damage repair scenarios on frigates.",
     tags: ["Unity", "C#", "AR"],
     repo: null,
+    detailHref: null,
   },
   {
     title: "Conference Management System",
@@ -32,6 +36,7 @@ const projects = [
       "A distributed conference management system composed of three microservices, focused on the review microservice, including API design and inter-service communication.",
     tags: ["Java", "Spring Boot", "Microservices"],
     repo: null,
+    detailHref: null,
   },
   {
     title: "Task Tracking Application",
@@ -39,6 +44,7 @@ const projects = [
       "A kanban-style task tracking application built with Java, Spring, and JavaFX, focused on clean architecture and usability.",
     tags: ["Java", "Spring", "JavaFX"],
     repo: null,
+    detailHref: null,
   },
 ];
 
@@ -91,16 +97,26 @@ export default function ProjectsContent() {
               </div>
             </div>
 
-            {project.repo && (
+            {(project.repo || project.detailHref) && (
               <div className="mt-4 flex gap-4 text-sm font-medium">
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-zinc-500 hover:text-zinc-900 hover:underline dark:text-zinc-400 dark:hover:text-zinc-50"
-                >
-                  GitHub
-                </a>
+                {project.detailHref && (
+                  <Link
+                    href={project.detailHref}
+                    className="text-zinc-500 hover:text-zinc-900 hover:underline dark:text-zinc-400 dark:hover:text-zinc-50"
+                  >
+                    Details
+                  </Link>
+                )}
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-500 hover:text-zinc-900 hover:underline dark:text-zinc-400 dark:hover:text-zinc-50"
+                  >
+                    GitHub
+                  </a>
+                )}
               </div>
             )}
           </div>
