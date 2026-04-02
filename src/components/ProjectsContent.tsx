@@ -9,7 +9,7 @@ const projects = [
   {
     title: "Kotlin Website Migration",
     description:
-      "Migration of the Kotlin website homepage from a legacy Flask and React 17 stack to React Router 7 with server-side rendering.",
+      "Migration of a past revision of the Kotlin website homepage from a legacy Flask and React stack to React Router 7 with server-side rendering.",
     tags: ["React Router 7", "TypeScript", "SSR"],
     repo: "https://github.com/vlad-ionita/React-Router-Migration-JetBrains.com",
     detailHref: "/projects/kotlin-website-migration",
