@@ -1,7 +1,7 @@
 "use client";
 
-import RollingText from "./RollingText";
-import FadeInText from "./FadeInText";
+import RollingText from "../RollingText";
+import FadeInText from "../FadeInText";
 import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore, useState } from "react";
-import RippleText from "./RippleText";
-import CornerBox from "./CornerBox";
+import RippleText from "../RippleText";
+import CornerBox from "../CornerBox";
 import MobileMenu from "./MobileMenu";
 
 const MAILTO = "mailto:ionitavlad83@gmail.com";

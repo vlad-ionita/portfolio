@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
-import CornerBox from "./CornerBox";
+import CornerBox from "../CornerBox";
 
 const MAILTO = "mailto:ionitavlad83@gmail.com";
 
