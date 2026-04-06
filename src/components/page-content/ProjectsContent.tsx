@@ -20,7 +20,7 @@ const projects = [
       "A full-stack job application tracker with a kanban-style interface, JWT authentication with refresh token rotation, and a responsive React frontend.",
     tags: ["React", "Node.js", "PostgreSQL", "Prisma"],
     repo: "https://github.com/vlad-ionita/Job-Application-Tracker",
-    detailHref: null,
+    detailHref: "/projects/job-application-tracker",
   },
   {
     title: "AR Frigate Application",
